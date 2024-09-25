@@ -224,10 +224,7 @@ Contributions are welcomed, either as issues tagged "enhancement" or pull reques
 
 ### Top contributors:
 
-<a href="https://github.com/Pittinic/platypod/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Pittinic/platypod" alt="contrib.rocks image" />
-</a>
-
+![Alt](https://repobeats.axiom.co/api/embed/3d9d54b9dfdd2cf4d9ed9e36d9192e1ba4249493.svg "Repobeats analytics image")
 
 
 <!-- LICENSE -->
