@@ -106,8 +106,8 @@ To get a copy up and running, follow these steps.
 
 ### Prerequisites
 
-* Install [pulumi](https://www.pulumi.com/docs/iac/download-install/) on your local environment.
 * Install [kubernetes](https://kubernetes.io/docs/setup/) on your server (be it a single-pod instance for local dev, a massive cloud cluster or anything in-between).
+* Install [pulumi](https://www.pulumi.com/docs/iac/download-install/) on your local environment. Pulumi will use a local kubeconfig if available, but can also be explicitly configured as shown [here](https://www.pulumi.com/registry/packages/kubernetes/installation-configuration/).
 * Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to be able to clone the repo in the next step.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
