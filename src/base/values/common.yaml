@@ -1,6 +1,28 @@
 variables:
   domain: localhost
+  k8s:
+    namespace: pulumi-traefik-k8s
+    containers:
+      prefix: ""
+      suffix: "-container"
+    ingresses:
+      prefix: ""
+      suffix: "-ingress"
+    init-containers:
+      prefix: ""
+      suffix: "-init-container"
+    roles:
+      prefix: ""
+      suffix: "-role"
+    role-bindings:
+      prefix: ""
+      suffix: "-role-binding"
+    services:
+      prefix: ""
+      suffix: "-service"
+    service-accounts:
+      prefix: ""
+      suffix: "-service-account"
   urls:
     prefix: ""
     suffix: ""
-  namespace: pulumi-traefik-k8s

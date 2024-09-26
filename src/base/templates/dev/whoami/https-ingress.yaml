@@ -3,8 +3,8 @@ resources:
     type: kubernetes:networking.k8s.io/v1:Ingress
     properties:
       metadata:
-        namespace: ${namespace}
-        name: whoami-https-ingress
+        namespace: ${k8s.namespace}
+        name: ${k8s.ingresses.prefix}${whoami.name}${k8s.ingresses.suffix}
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: ${traefik.ports.https.name}
           traefik.ingress.kubernetes.io/router.tls: "true"
@@ -13,13 +13,13 @@ resources:
 
       spec:
         rules:
-          - host: ${urls.prefix}whoami${urls.suffix}.${domain}
+          - host: ${urls.prefix}${whoami.name}${urls.suffix}.${domain}
             http:
               paths:
                 - path: /tls
                   pathType: Exact
                   backend:
                     service:
-                      name: ${whoami.service-name}
+                      name: ${k8s.services.prefix}${whoami.name}${k8s.services.suffix}
                       port:
                         number: ${whoami.ports.http.targetPort}

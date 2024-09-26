@@ -1,0 +1,11 @@
+name: platypod
+description: Kubernetes-based project packaging numerous miscellaneous services ranging from media management to dev and cyber tools, fully instrumented for observability.
+
+runtime:
+  name: yaml
+  options:
+    compiler: "sh ./bin/merge_yaml.sh"
+
+encryptionsalt:
+variables:
+resources:

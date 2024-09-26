@@ -4,16 +4,11 @@ variables:
     logging:
       format: common
       level: DEBUG
+    name: traefik
     ports:
       https:
         name: https
         port: 443
         targetPort: 443
     replicas-nb: 1
-    role-binding-name: traefik-role-binding
-    role-name: traefik-role
-    service-account-name: traefik-service-account
-    service-name: traefik
-    services:
-      https-name: traefik-https-service
     tls-resolver-name: letsencrypt

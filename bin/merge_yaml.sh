@@ -35,6 +35,7 @@ merge_yaml() {
   local base_files=$(
     2>/dev/null find "${yaml_root_folder}/base" \
       \( -name '*.yaml' -o -name '*.yml' \) |
+    grep --invert-match 'values-template.yaml' |
     tr '\n' ' ' |
     sed 's/ $//'
   )
@@ -42,6 +43,7 @@ merge_yaml() {
   local env_files=$(
     2>/dev/null find "${yaml_root_folder}/${env}" \
       \( -name '*.yaml' -o -name '*.yml' \) |
+    grep --invert-match 'values-template.yaml' |
     tr '\n' ' ' |
     sed 's/ $//'
   )

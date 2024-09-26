@@ -3,23 +3,23 @@ resources:
     type: kubernetes:apps/v1:Deployment
     properties:
       metadata:
-        namespace: ${namespace}
-        name: ${whoami.service-name}
+        namespace: ${k8s.namespace}
+        name: ${k8s.services.prefix}${whoami.name}${k8s.services.suffix}
         labels:
-          app: ${whoami.service-name}
-      
+          app: ${k8s.services.prefix}${whoami.name}${k8s.services.suffix}
+
       spec:
         replicas: ${whoami.replicas-nb}
         selector:
           matchLabels:
-            app: ${whoami.service-name}
+            app: ${k8s.services.prefix}${whoami.name}${k8s.services.suffix}
         template:
           metadata:
             labels:
-              app: ${whoami.service-name}
+              app: ${k8s.services.prefix}${whoami.name}${k8s.services.suffix}
           spec:
             containers:
-              - name: whoami
+              - name: ${k8s.containers.prefix}${whoami.name}${k8s.containers.suffix}
                 image: ${whoami.image}
                 ports:
                   - name: ${whoami.ports.http.name}

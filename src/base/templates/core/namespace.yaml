@@ -1,8 +1,8 @@
 resources:
-  base-namespace:
+  platypod-namespace:
     type: kubernetes:core/v1:Namespace
     properties:
       metadata:
-        name: ${namespace}
+        name: ${k8s.namespace}
         labels:
-          name: ${namespace}
+          name: ${k8s.namespace}

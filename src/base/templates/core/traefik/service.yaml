@@ -3,15 +3,15 @@ resources:
     type: kubernetes:core/v1:Service
     properties:
       metadata:
-        namespace: ${namespace}
-        name: ${traefik.service-name}
-        
-      spec: 
+        namespace: ${k8s.namespace}
+        name: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
+
+      spec:
         ports:
           - protocol: TCP
             port: ${traefik.ports.https.port}
             targetPort: ${traefik.ports.https.targetPort}
             name: ${traefik.ports.https.name}
         selector:
-          app: ${traefik.service-name}
+          app: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
         type: LoadBalancer

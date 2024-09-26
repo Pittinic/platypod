@@ -3,28 +3,28 @@ resources:
     type: kubernetes:apps/v1:Deployment
     properties:
       metadata:
-        namespace: ${namespace}
-        name: ${traefik.service-name}
+        namespace: ${k8s.namespace}
+        name: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
         labels:
-          app: ${traefik.service-name}
+          app: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
       spec:
         replicas: ${traefik.replicas-nb}
         selector:
           matchLabels:
-            app: ${traefik.service-name}
+            app: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
         template:
           metadata:
             labels:
-              app: ${traefik.service-name}
+              app: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
           spec:
-            serviceAccountName: ${traefik.service-account-name}
+            serviceAccountName: ${k8s.service-accounts.prefix}${traefik.name}${k8s.service-accounts.suffix}
             containers:
-              - name: traefik
+              - name: ${k8s.containers.prefix}${traefik.name}${k8s.containers.suffix}
                 image: ${traefik.image}
                 args:
                   - --providers.kubernetesingress=true
                   - --providers.kubernetesingress.allowEmptyServices=true
-                  - --providers.kubernetesingress.namespaces=${namespace}
+                  - --providers.kubernetesingress.namespaces=${k8s.namespace}
                   # logging
                   - --log.level=${traefik.logging.level}
                   - --log.format=${traefik.logging.format}

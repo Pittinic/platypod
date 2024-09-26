@@ -1,0 +1,15 @@
+resources:
+  traefik-rbac-cluster-role-binding:
+    type: kubernetes:rbac.authorization.k8s.io/v1:ClusterRoleBinding
+    properties:
+      metadata:
+        name: ${k8s.role-bindings.prefix}${traefik.name}${k8s.role-bindings.suffix}
+        namespace: ${k8s.namespace}
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: ${k8s.roles.prefix}${traefik.name}${k8s.roles.suffix}
+      subjects:
+        - kind: ServiceAccount
+          name: ${k8s.service-accounts.prefix}${traefik.name}${k8s.service-accounts.suffix}
+          namespace: ${k8s.namespace}
