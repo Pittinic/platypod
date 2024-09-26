@@ -33,9 +33,10 @@ variables:
   repository:
     url: https://github.com/Pittinic/platypod
     branch: dev
-    data-path: bin
+    data-path: data
   git-clone:
     name: git-clone
+    mount-path: /volume
   urls:
     prefix: ""
     suffix: ""

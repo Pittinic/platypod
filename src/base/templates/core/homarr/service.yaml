@@ -1,0 +1,15 @@
+resources:
+  homarr-service:
+    type: kubernetes:core/v1:Service
+    properties:
+      metadata:
+        namespace: ${k8s.namespace}
+        name: ${k8s.services.prefix}${homarr.name}${k8s.services.suffix}
+
+      spec:
+        ports:
+          - protocol: TCP
+            name: ${homarr.ports.http.name}
+            port: ${homarr.ports.http.targetPort}
+        selector:
+          app: ${k8s.services.prefix}${homarr.name}${k8s.services.suffix}

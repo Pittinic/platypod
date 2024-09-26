@@ -1,0 +1,9 @@
+variables:
+  homarr:
+    image: ghcr.io/ajnart/homarr:0.15.4
+    name: homarr
+    ports:
+      http:
+        name: http
+        port: 7575
+        targetPort: 80
