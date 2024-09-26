@@ -198,6 +198,8 @@ We will create a [Pulumi stack](https://www.pulumi.com/docs/iac/concepts/stacks/
 - [ ] Home
   - [ ] **HomeAssistant** -> *automation*
   - [ ] **HomeBridge** -> *homekit*
+- [ ] To think about
+  - [ ] Global 404 page?
 
 See the [open issues](https://github.com/Pittinic/platypod/issues) for a full list of proposed features (and known issues).
 

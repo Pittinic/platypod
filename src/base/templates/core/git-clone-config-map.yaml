@@ -1,0 +1,14 @@
+resources:
+  git-clone-config-map:
+    type: kubernetes:core/v1:ConfigMap
+    properties:
+      metadata:
+        namespace: ${k8s.namespace}
+        name: ${k8s.config-map.prefix}${git-clone.name}${k8s.config-map.suffix}
+      data:
+        entrypoint.sh: |
+          git clone ${repository.url} --branch ${repository.branch} --no-checkout /volume --depth 1 &&
+          cd /volume &&
+          git sparse-checkout init --cone &&
+          git sparse-checkout set $${REPOSITORY_DATA_PATH} &&
+          git checkout

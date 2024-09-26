@@ -1,5 +1,5 @@
 resources:
-  whoami-https-ingress:
+  whoami-ingress:
     type: kubernetes:networking.k8s.io/v1:Ingress
     properties:
       metadata:

@@ -2,27 +2,40 @@ variables:
   domain: localhost
   k8s:
     namespace: pulumi-traefik-k8s
+    config-map:
+      prefix: ""
+      suffix: "--config-map"
     containers:
       prefix: ""
-      suffix: "-container"
+      suffix: "--container"
     ingresses:
       prefix: ""
-      suffix: "-ingress"
+      suffix: "--ingress"
     init-containers:
       prefix: ""
-      suffix: "-init-container"
+      suffix: "--init-container"
     roles:
       prefix: ""
-      suffix: "-role"
+      suffix: "--role"
     role-bindings:
       prefix: ""
-      suffix: "-role-binding"
+      suffix: "--role-binding"
     services:
       prefix: ""
-      suffix: "-service"
+      suffix: "--service"
     service-accounts:
       prefix: ""
-      suffix: "-service-account"
+      suffix: "--service-account"
+    volumes:
+      empty-dir:
+        prefix: ""
+        suffix: "--empty-dir-volume"
+  repository:
+    url: https://github.com/Pittinic/platypod
+    branch: dev
+    data-path: bin
+  git-clone:
+    name: git-clone
   urls:
     prefix: ""
     suffix: ""
