@@ -5,9 +5,14 @@
     },
     "categories": [
         {
-            "id": "40017a0b-3929-4847-97d0-dcfd71956b29",
-            "name": "Monitoring",
-            "position": 4
+            "id": "e7614856-6599-4bb7-bda4-206997ed4bf0",
+            "name": "Applications",
+            "position": 1
+        },
+        {
+            "id": "51949c02-629e-49b6-937e-54824b505932",
+            "name": "DNS",
+            "position": 2
         },
         {
             "id": "ca0529c1-c698-4ce8-8994-dd331cc40f34",
@@ -16,14 +21,9 @@
             "type": "category"
         },
         {
-            "id": "51949c02-629e-49b6-937e-54824b505932",
-            "name": "DNS",
-            "position": 2
-        },
-        {
-            "id": "e7614856-6599-4bb7-bda4-206997ed4bf0",
-            "name": "Applications",
-            "position": 1
+            "id": "40017a0b-3929-4847-97d0-dcfd71956b29",
+            "name": "Monitoring",
+            "position": 4
         },
         {
             "id": "7f226720-047f-4bde-a93f-f243d3f541ba",
@@ -122,7 +122,7 @@
         {
             "id": "231b3ab3-bfdb-4d08-a276-8a288757aefd",
             "name": "Who-am-i",
-            "url": "https://${TBD}",
+            "url": "https://${WHOAMI_URL}",
             "appearance": {
                 "iconUrl": "https://unpkg.com/@tabler/icons-png@2.0.0-beta/icons/question-mark.png",
                 "appNameStatus": "normal",
@@ -143,7 +143,7 @@
             },
             "behaviour": {
                 "isOpeningNewTab": true,
-                "externalUrl": "https://${TBD}"
+                "externalUrl": "https://${WHOAMI_URL}"
             },
             "area": {
                 "type": "category",

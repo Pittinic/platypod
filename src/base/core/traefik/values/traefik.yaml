@@ -1,6 +1,10 @@
 variables:
   traefik:
-    image: traefik:v3.1
+    image:
+      registry: docker.io/
+      namespace: ""
+      repository: traefik
+      tag: v3.1
     logging:
       format: common
       level: DEBUG

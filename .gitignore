@@ -1,2 +1,2 @@
-src/*/values.yaml
+src/stacks/*/values.yaml
 Pulumi.*.yaml

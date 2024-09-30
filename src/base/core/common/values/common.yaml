@@ -1,7 +1,19 @@
 variables:
-  domain: localhost
+  docker:
+    images:
+      registry: "" # optional for local images
+      namespace: platypod/
+      platform: linux/amd64
+      skip-push: true
+    image-builder:
+      name:
+    registry:
+      server: "" # eg. ghcr.io, docker.io, host:port
+      username: ""
+      password: ""
+  domain: exemple.com
   k8s:
-    namespace: pulumi-traefik-k8s
+    namespace: platypod
     config-map:
       prefix: ""
       suffix: "--config-map"
@@ -30,13 +42,10 @@ variables:
       empty-dir:
         prefix: ""
         suffix: "--empty-dir-volume"
-  repository:
-    url: https://github.com/Pittinic/platypod
-    branch: dev
-    data-path: data
-  git-clone:
-    name: git-clone
-    mount-path: /volume
+      config-map:
+        prefix: ""
+        suffix: "--config-map-volume"
+  timezone: Europe/Paris
   urls:
     prefix: ""
     suffix: ""

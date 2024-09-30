@@ -1,6 +1,10 @@
 variables:
   homarr:
-    image: ghcr.io/ajnart/homarr:0.15.4
+    image:
+      registry: ghcr.io/
+      namespace: ajnart/
+      repository: homarr
+      tag: 0.15.4
     name: homarr
     ports:
       http:

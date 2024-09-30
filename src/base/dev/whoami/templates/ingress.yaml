@@ -16,8 +16,8 @@ resources:
           - host: ${urls.prefix}${whoami.name}${urls.suffix}.${domain}
             http:
               paths:
-                - path: /tls
-                  pathType: Exact
+                - path: /
+                  pathType: Prefix
                   backend:
                     service:
                       name: ${k8s.services.prefix}${whoami.name}${k8s.services.suffix}

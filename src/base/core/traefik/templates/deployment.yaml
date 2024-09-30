@@ -20,7 +20,7 @@ resources:
             serviceAccountName: ${k8s.service-accounts.prefix}${traefik.name}${k8s.service-accounts.suffix}
             containers:
               - name: ${k8s.containers.prefix}${traefik.name}${k8s.containers.suffix}
-                image: ${traefik.image}
+                image: ${traefik.image.registry}${traefik.image.namespace}${traefik.image.repository}:${traefik.image.tag}
                 args:
                   - --providers.kubernetesingress=true
                   - --providers.kubernetesingress.allowEmptyServices=true

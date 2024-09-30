@@ -1,21 +1,19 @@
 #!/bin/sh
 
-yaml_root_folder="src"
-
 merge_yaml() {
   function print_usage() {
     echo ""
     echo "Usage: merge_yaml [--env <env>] [--debug]"
-    echo "  Retrieve and merge yaml files from both the base folder and {env}"
-    echo "  folder (default: dev), no matter the depth, using yq."
+    echo "  Retrieve and merge yaml files from both the base folder and "
+    echo "  stacks/{env} folder (default: dev), no matter the depth, using yq."
     echo "eg."
     echo "  merge_yaml --env prd"
     echo "translates into"
     echo "  yq ea '. as \$item ireduce ({}; . * \$item )'" \
-         "${yaml_root_folder}/base/app1/deployments/xxx.yaml" \
-         "${yaml_root_folder}/base/app2/service.yaml" \
-         "${yaml_root_folder}/base/values.yaml" \
-         "${yaml_root_folder}/prd/values.yaml" \
+         "src/base/something/app1/templates/xxx.yaml" \
+         "src/base/something_else/app2/templates/yyy.yaml" \
+         "src/base/something/app1/values/xxx.yaml" \
+         "src/stacks/prd/values.yaml" \
          "Pulumi.yaml"
     echo ""
   }
@@ -33,16 +31,18 @@ merge_yaml() {
   done
   
   local base_files=$(
-    2>/dev/null find "${yaml_root_folder}/base" \
+    2>/dev/null find "src/base" \
       \( -name '*.yaml' -o -name '*.yml' \) |
+    grep --invert-match 'images/resources' |
     grep --invert-match 'values-template.yaml' |
     tr '\n' ' ' |
     sed 's/ $//'
   )
 
   local env_files=$(
-    2>/dev/null find "${yaml_root_folder}/${env}" \
+    2>/dev/null find "src/stacks/${env}" \
       \( -name '*.yaml' -o -name '*.yml' \) |
+    grep --invert-match 'images/resources' |
     grep --invert-match 'values-template.yaml' |
     tr '\n' ' ' |
     sed 's/ $//'

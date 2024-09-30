@@ -200,6 +200,8 @@ We will create a [Pulumi stack](https://www.pulumi.com/docs/iac/concepts/stacks/
   - [ ] **HomeBridge** -> *homekit*
 - [ ] To think about
   - [ ] Global 404 page?
+  - [ ] Write documentations for each service specificities
+  - [ ] Write documentations for common k8s and pulumi commands
 
 See the [open issues](https://github.com/Pittinic/platypod/issues) for a full list of proposed features (and known issues).
 
