@@ -18,9 +18,9 @@ resources:
           SOURCE_IMAGE: ${traefik.image.registry}${traefik.image.namespace}${traefik.image.repository}:${traefik.image.tag}
           JELLYFIN_CERT_RESOLVER: ${traefik.tls-resolver-name}
           JELLYFIN_ENTRYPOINT: ${traefik.ports.https.name}
-          JELLYFIN_HOST: ${jellyfin.url}
+          JELLYFIN_HOST: ${jellyfin.host}
           JELLYFIN_PORT: ${jellyfin.port}
-          JELLYFIN_SERVICE_NAME: ${jellyfin.service.name}
-          JELLYFIN_URL: ${urls.prefix}${jellyfin.service.name}${urls.suffix}.${domain}
+          JELLYFIN_SERVICE_NAME: ${jellyfin.name}
+          JELLYFIN_URL: ${urls.prefix}${jellyfin.name}${urls.suffix}.${domain}
       imageName: ${docker.images.registry}${docker.images.namespace}${traefik.image.repository}:${traefik.image.tag}
       skipPush: ${docker.images.skip-push}

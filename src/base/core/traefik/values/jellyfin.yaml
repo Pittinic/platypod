@@ -1,6 +1,8 @@
 variables:
   jellyfin:
-    url: host.docker.internal
-    port: "8096"
-    service:
-      name: jellyfin-local
+    host: host.docker.internal
+    port: "8096"  # The quotes matter for type-casting (for docker:Image args in Pulumi)
+    name: jellyfin
+    credentials:
+      username: guest
+      password: ""

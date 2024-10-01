@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-ENV BUILD_DEPS="gettext" \
+ARG BUILD_DEPS="gettext" \
     RUNTIME_DEPS="libintl"
 
 RUN set -x && \
