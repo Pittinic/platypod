@@ -1,4 +1,4 @@
-FROM alpine:3.6 as envsubst-container
+FROM alpine:3.6
 
 ENV BUILD_DEPS="gettext" \
     RUNTIME_DEPS="libintl"

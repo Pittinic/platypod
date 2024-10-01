@@ -20,8 +20,11 @@ resources:
             serviceAccountName: ${k8s.service-accounts.prefix}${traefik.name}${k8s.service-accounts.suffix}
             containers:
               - name: ${k8s.containers.prefix}${traefik.name}${k8s.containers.suffix}
-                image: ${traefik.image.registry}${traefik.image.namespace}${traefik.image.repository}:${traefik.image.tag}
+                image: ${docker.images.registry}${docker.images.namespace}${traefik.image.repository}:${traefik.image.tag}
                 args:
+                  # provide: file
+                  - --providers.file.directory=/file-provider
+                  # provider: kubernetes
                   - --providers.kubernetesingress=true
                   - --providers.kubernetesingress.allowEmptyServices=true
                   - --providers.kubernetesingress.namespaces=${k8s.namespace}
