@@ -1,17 +1,15 @@
 resources:
-  # https://www.pulumi.com/registry/packages/docker/api-docs/image/
+  # https://github.com/pulumi/pulumi-docker-build/blob/main/examples/yaml/Pulumi.yaml
+  # https://www.pulumi.com/registry/packages/docker-build/api-docs/image/
   docker-image-builder:
-    type: docker:Image
-    options:
-      version: v4.5.0
+    type: docker-build:Image
     properties:
-      registry:
-        server: ${docker.registry.server}
-        username: ${docker.registry.username}
-        password: ${docker.registry.password}
-      build:
-        context: src/base/dev/image-builder/images
-        dockerfile: src/base/dev/image-builder/images/builder.Dockerfile
-        platform: ${docker.images.platform}
-      imageName: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
-      skipPush: ${docker.images.skip-push}
+      context:
+        location: src/base/dev/image-builder/images
+      dockerfile:
+        location: src/base/dev/image-builder/images/builder.Dockerfile
+      platforms: ${docker.images.platforms}
+      push: ${docker.images.push}
+      registries: ${docker.registries}
+      tags:
+      - ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}

@@ -1,26 +1,24 @@
 resources:
-  # https://www.pulumi.com/registry/packages/docker/api-docs/image/
+  # https://github.com/pulumi/pulumi-docker-build/blob/main/examples/yaml/Pulumi.yaml
   docker-image-homarr:
-    type: docker:Image
+    type: docker-build:Image
     options:
-      version: v4.5.0
       dependsOn:
       - ${docker-image-builder}
     properties:
-      registry:
-        server: ${docker.registry.server}
-        username: ${docker.registry.username}
-        password: ${docker.registry.password}
-      build:
-        context: src/base/core/homarr/images
-        dockerfile: src/base/core/homarr/images/Dockerfile
-        platform: ${docker.images.platform}
-        args:
-          BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
-          SOURCE_IMAGE: ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}
-          WHOAMI_URL: ${urls.prefix}${whoami.name}${urls.suffix}.${domain}
-          JELLYFIN_HOST: ${urls.prefix}${jellyfin.name}${urls.suffix}.${domain}
-          JELLYFIN_USERNAME: ${jellyfin.credentials.username}
-          JELLYFIN_PASSWORD: ${jellyfin.credentials.password}
-      imageName: ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}
-      skipPush: ${docker.images.skip-push}
+      buildArgs:
+        BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
+        SOURCE_IMAGE: ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}
+        WHOAMI_URL: ${urls.prefix}${whoami.name}${urls.suffix}.${domain}
+        JELLYFIN_HOST: ${urls.prefix}${jellyfin.name}${urls.suffix}.${domain}
+        JELLYFIN_USERNAME: ${jellyfin.credentials.username}
+        JELLYFIN_PASSWORD: ${jellyfin.credentials.password}
+      context:
+        location: src/base/core/homarr/images
+      dockerfile:
+        location: src/base/core/homarr/images/Dockerfile
+      platforms: ${docker.images.platforms}
+      push: ${docker.images.push}
+      registries: ${docker.registries}
+      tags:
+      - ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}

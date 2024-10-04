@@ -3,10 +3,12 @@ variables:
     images:
       registry: "" # optional for local images
       namespace: platypod/
-      platform: linux/amd64
-      skip-push: true
-    registry:
-      server: "" # eg. ghcr.io, docker.io, host:port
+      platforms:
+      - linux/amd64
+      - linux/arm64
+      push: false
+    registries:
+    - address: "" # eg. ghcr.io, docker.io, host:port
       username: ""
       password: ""
   domain: exemple.com

@@ -1,17 +1,17 @@
 resources:
   # https://www.pulumi.com/registry/packages/docker/api-docs/image/
   docker-image-wait4sigint:
-    type: docker:Image
+    type: docker-build:Image
     options:
-      version: v4.5.0
+      dependsOn:
+      - ${docker-image-builder}
     properties:
-      registry:
-        server: ${docker.registry.server}
-        username: ${docker.registry.username}
-        password: ${docker.registry.password}
-      build:
-        context: src/base/dev/wait4sigint/images
-        dockerfile: src/base/dev/wait4sigint/images/Dockerfile
-        platform: ${docker.images.platform}
-      imageName: ${docker.images.registry}${docker.images.namespace}${wait4sigint.image.repository}:${wait4sigint.image.tag}
-      skipPush: ${docker.images.skip-push}
+      context:
+        location: src/base/dev/wait4sigint/images
+      dockerfile:
+        location: src/base/dev/wait4sigint/images/Dockerfile
+      platforms: ${docker.images.platforms}
+      push: ${docker.images.push}
+      registries: ${docker.registries}
+      tags:
+      - ${docker.images.registry}${docker.images.namespace}${wait4sigint.image.repository}:${wait4sigint.image.tag}

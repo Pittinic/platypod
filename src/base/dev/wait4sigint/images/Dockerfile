@@ -1,4 +1,4 @@
-FROM golang:1.21-alpine3.18 as go-builder
+FROM golang:1.21-alpine3.18 AS go-builder
 COPY resources/wait4sigint.go /wait4sigint.go
 ARG GOOS
 ARG GOARCH
