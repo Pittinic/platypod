@@ -14,7 +14,7 @@ resources:
         dockerfile: src/base/core/traefik/images/Dockerfile
         platform: ${docker.images.platform}
         args:
-          BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.image.repository}:${image-builder.image.tag}
+          BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
           SOURCE_IMAGE: ${traefik.image.registry}${traefik.image.namespace}${traefik.image.repository}:${traefik.image.tag}
           JELLYFIN_CERT_RESOLVER: ${traefik.tls-resolver-name}
           JELLYFIN_ENTRYPOINT: ${traefik.ports.https.name}

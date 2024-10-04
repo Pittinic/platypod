@@ -1,8 +1,4 @@
 variables:
   image-builder:
-    image:
-      registry: docker.io/
-      namespace: ""
-      repository: alpine
-      tag: 3.6
     name: image-builder
+    tag: 0.1.0

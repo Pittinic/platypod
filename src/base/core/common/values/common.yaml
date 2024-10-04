@@ -5,8 +5,6 @@ variables:
       namespace: platypod/
       platform: linux/amd64
       skip-push: true
-    image-builder:
-      name:
     registry:
       server: "" # eg. ghcr.io, docker.io, host:port
       username: ""

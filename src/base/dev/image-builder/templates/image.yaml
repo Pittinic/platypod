@@ -13,5 +13,5 @@ resources:
         context: src/base/dev/image-builder/images
         dockerfile: src/base/dev/image-builder/images/builder.Dockerfile
         platform: ${docker.images.platform}
-      imageName: ${docker.images.registry}${docker.images.namespace}${image-builder.image.repository}:${image-builder.image.tag}
+      imageName: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
       skipPush: ${docker.images.skip-push}

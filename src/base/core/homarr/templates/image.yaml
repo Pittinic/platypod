@@ -16,7 +16,7 @@ resources:
         dockerfile: src/base/core/homarr/images/Dockerfile
         platform: ${docker.images.platform}
         args:
-          BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.image.repository}:${image-builder.image.tag}
+          BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
           SOURCE_IMAGE: ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}
           WHOAMI_URL: ${urls.prefix}${whoami.name}${urls.suffix}.${domain}
           JELLYFIN_HOST: ${urls.prefix}${jellyfin.name}${urls.suffix}.${domain}
