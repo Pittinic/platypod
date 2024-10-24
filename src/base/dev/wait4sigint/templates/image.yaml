@@ -10,8 +10,9 @@ resources:
         location: src/base/dev/wait4sigint/images
       dockerfile:
         location: src/base/dev/wait4sigint/images/Dockerfile
-      platforms: ${docker.images.platforms}
-      push: ${docker.images.push}
+      exports: ${docker.exports}
+      platforms: ${docker.build.platforms}
+      push: ${docker.build.push}
       registries: ${docker.registries}
       tags:
-      - ${docker.images.registry}${docker.images.namespace}${wait4sigint.image.repository}:${wait4sigint.image.tag}
+      - ${docker.build.registry}${docker.build.namespace}${wait4sigint.image.repository}:${wait4sigint.image.tag}

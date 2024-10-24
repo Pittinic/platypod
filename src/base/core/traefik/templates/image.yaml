@@ -7,7 +7,7 @@ resources:
       - ${docker-image-builder}
     properties:
       buildArgs:
-        BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
+        BUILDER_IMAGE: builder:current
         SOURCE_IMAGE: ${traefik.image.registry}${traefik.image.namespace}${traefik.image.repository}:${traefik.image.tag}
         JELLYFIN_CERT_RESOLVER: ${traefik.tls-resolver-name}
         JELLYFIN_ENTRYPOINT: ${traefik.ports.https.name}
@@ -17,10 +17,14 @@ resources:
         JELLYFIN_URL: ${urls.prefix}${jellyfin.name}${urls.suffix}.${domain}
       context:
         location: src/base/core/traefik/images
+        named:
+          builder:current:
+            location: docker-image://${docker.build.registry}${docker.build.namespace}${image-builder.name}:${image-builder.tag}
       dockerfile:
         location: src/base/core/traefik/images/Dockerfile
-      platforms: ${docker.images.platforms}
-      push: ${docker.images.push}
+      exports: ${docker.exports}
+      platforms: ${docker.build.platforms}
+      push: ${docker.build.push}
       registries: ${docker.registries}
       tags:
-      - ${docker.images.registry}${docker.images.namespace}${traefik.image.repository}:${traefik.image.tag}
+      - ${docker.build.registry}${docker.build.namespace}${traefik.image.repository}:${traefik.image.tag}

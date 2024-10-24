@@ -3,13 +3,17 @@ resources:
   # https://www.pulumi.com/registry/packages/docker-build/api-docs/image/
   docker-image-builder:
     type: docker-build:Image
+    options:
+      dependsOn:
+      - ${docker-registry-ingress}
     properties:
       context:
         location: src/base/dev/image-builder/images
       dockerfile:
         location: src/base/dev/image-builder/images/builder.Dockerfile
-      platforms: ${docker.images.platforms}
-      push: ${docker.images.push}
+      exports: ${docker.exports}
+      platforms: ${docker.build.platforms}
+      push: ${docker.build.push}
       registries: ${docker.registries}
       tags:
-      - ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
+      - ${docker.build.registry}${docker.build.namespace}${image-builder.name}:${image-builder.tag}

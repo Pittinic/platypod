@@ -1,10 +1,13 @@
 resources:
   traefik-service:
     type: kubernetes:core/v1:Service
+    options:
+      dependsOn:
+      - ${traefik-deployment}
     properties:
       metadata:
         namespace: ${k8s.namespace}
-        name: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
+        name: ${names.services.traefik}
 
       spec:
         ports:
@@ -13,5 +16,5 @@ resources:
             targetPort: ${traefik.ports.https.targetPort}
             name: ${traefik.ports.https.name}
         selector:
-          app: ${k8s.services.prefix}${traefik.name}${k8s.services.suffix}
+          app: ${names.pods.traefik}
         type: LoadBalancer

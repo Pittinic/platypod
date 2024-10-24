@@ -7,18 +7,22 @@ resources:
       - ${docker-image-builder}
     properties:
       buildArgs:
-        BUILDER_IMAGE: ${docker.images.registry}${docker.images.namespace}${image-builder.name}:${image-builder.tag}
-        SOURCE_IMAGE: ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}
+        BUILDER_IMAGE: builder:current
+        SOURCE_IMAGE: ${docker.build.registry}${docker.build.namespace}${homarr.image.repository}:${homarr.image.tag}
         WHOAMI_URL: ${urls.prefix}${whoami.name}${urls.suffix}.${domain}
         JELLYFIN_HOST: ${urls.prefix}${jellyfin.name}${urls.suffix}.${domain}
         JELLYFIN_USERNAME: ${jellyfin.credentials.username}
         JELLYFIN_PASSWORD: ${jellyfin.credentials.password}
       context:
         location: src/base/core/homarr/images
+        named:
+          builder:current:
+            location: docker-image://${docker.build.registry}${docker.build.namespace}${image-builder.name}:${image-builder.tag}
+      exports: ${docker.exports}
       dockerfile:
         location: src/base/core/homarr/images/Dockerfile
-      platforms: ${docker.images.platforms}
-      push: ${docker.images.push}
+      platforms: ${docker.build.platforms}
+      push: ${docker.build.push}
       registries: ${docker.registries}
       tags:
-      - ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}
+      - ${docker.build.registry}${docker.build.namespace}${homarr.image.repository}:${homarr.image.tag}

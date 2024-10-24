@@ -7,21 +7,21 @@ resources:
     properties:
       metadata:
         namespace: ${k8s.namespace}
-        name: ${k8s.services.prefix}${homarr.name}${k8s.services.suffix}
+        name: ${names.pods.homarr}
         labels:
-          app: ${k8s.services.prefix}${homarr.name}${k8s.services.suffix}
+          app: ${names.pods.homarr}
       spec:
         selector:
           matchLabels:
-            app: ${k8s.services.prefix}${homarr.name}${k8s.services.suffix}
+            app: ${names.pods.homarr}
         template:
           metadata:
             labels:
-              app: ${k8s.services.prefix}${homarr.name}${k8s.services.suffix}
+              app: ${names.pods.homarr}
           spec:
             containers:
-            - name: ${k8s.containers.prefix}${homarr.name}${k8s.containers.suffix}
-              image: ${docker.images.registry}${docker.images.namespace}${homarr.image.repository}:${homarr.image.tag}
+            - name: ${names.containers.homarr}
+              image: ${docker.build.registry}${docker.build.namespace}${homarr.image.repository}:${homarr.image.tag}
               env:
               - name: TZ
                 value: ${timezone}

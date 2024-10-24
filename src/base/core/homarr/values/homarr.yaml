@@ -1,4 +1,5 @@
 variables:
+
   homarr:
     image:
       registry: ghcr.io/
@@ -11,3 +12,16 @@ variables:
         name: http
         port: 7575
         targetPort: 80
+
+  hosts:
+    homarr: ${urls.prefix}${homarr.name}${urls.suffix}.${domain}
+
+  names:
+    containers:
+      homarr: ${k8s.containers.prefix}${homarr.name}${k8s.containers.suffix}
+    ingresses:
+      homarr: ${k8s.ingresses.prefix}${homarr.name}${k8s.ingresses.suffix}
+    pods:
+      homarr: ${k8s.pods.prefix}${homarr.name}${k8s.pods.suffix}
+    services:
+      homarr: ${k8s.services.prefix}${homarr.name}${k8s.services.suffix}
