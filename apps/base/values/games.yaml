@@ -95,7 +95,7 @@ palworld:
   loadBalancerIP: "" # MetalLB path only (dev); ignored when externalIP is set.
   # Pin to the node that owns externalIP. Required in prod.
   nodeSelector: {}
-  image: thijsvanloef/palworld-server-docker:v2.7.1
+  image: thijsvanloef/palworld-server-docker:v2.7.3
   ports:
     game:
       name: game
