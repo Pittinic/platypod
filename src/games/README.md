@@ -55,9 +55,17 @@ of restart cause, and doing that over NFS is catastrophically slow (2026-08-02:
 a Palworld restart took ~4h instead of its normal ~15min, traced to NFS
 read/write latency on the Synology). Since every game server is already pinned
 to one node via `nodeSelector`, NFS's cross-node portability bought nothing.
-`UPDATE_ON_BOOT: "false"` (in `palworld.server.extraEnv`) additionally skips
-SteamCMD's own validate pass on ordinary restarts — `AUTO_UPDATE_ENABLED`'s
-hourly cron still catches real game updates without blocking startup on it.
+**`UPDATE_ON_BOOT` must stay `"true"`** (in `palworld.server.extraEnv`). It reads
+like a boot-only knob, but the image gates the auto-update cron on
+`AUTO_UPDATE_ENABLED` **and** `UPDATE_ON_BOOT` both being true (`scripts/start.sh`).
+Setting it `"false"` — as prod did until 2026-09-09, to dodge the NFS validate
+above — silently stops the cron being registered at all, so the game build never
+moves: the server sat on `v1.0.2.101103` after 1.0.3 shipped, then on
+`v1.0.3.101283` after 1.0.4 shipped. Neither the validate cost nor the tradeoff
+survives today: the games volume is node-local (see above), and since image
+`v2.7.3` the boot path is wrapped in `UpdateRequired()`, a single
+`api.steamcmd.net` manifest comparison that downloads nothing unless the build
+actually changed.
 
 **Backups: save data only, not the install.** Engine/binaries are redownloadable
 from Steam in minutes (proven during the 2026-08-02 migration) — backing them
